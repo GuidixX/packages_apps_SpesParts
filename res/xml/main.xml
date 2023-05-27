@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2024 Yet Another AOSP Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:settings="http://schemas.android.com/apk/res/org.yaap.spesparts">
+
+    <com.android.settingslib.widget.TopIntroPreference
+        android:key="spes_parts_intro"
+        android:title="@string/spes_parts_summary"/>
+
+    <!-- Start of CPU category -->
+    <PreferenceCategory  
+        android:key="category_cpu"
+        android:title="@string/category_cpu">
+
+        <SwitchPreference
+            android:key="power_efficient_workqueue"
+            android:title="@string/power_efficient_workqueue_title"
+            android:summary="@string/power_efficient_workqueue_summary" />
+    </PreferenceCategory>
+
+    <!-- Start of display category -->
+    <PreferenceCategory  
+        android:key="category_display"
+        android:title="@string/category_display">
+    </PreferenceCategory>
+
+    <!-- Start of UiBench Category -->
+    <PreferenceCategory
+        android:key="category_uibench"
+        android:title="@string/category_uibench">
+
+        <Preference
+            android:key="jitter"
+            android:title="@string/jitter_test_title"
+            android:summary="@string/jitter_test_summary"
+            android:persistent="false" >
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="org.yaap.spesparts"
+                    android:targetClass="org.yaap.spesparts.uibench.JitterTestActivity" />
+        </Preference>
+    </PreferenceCategory>
+</PreferenceScreen>

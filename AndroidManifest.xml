@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2024 Yet Another AOSP Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:sharedUserId="android.uid.system"
+          package="org.yaap.spesparts"
+          android:versionCode="1"
+          android:versionName="1.0" >
+
+    <uses-permission android:name="android.permission.INJECT_EVENTS"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+    <application
+        android:icon="@drawable/ic_launcher_settings"
+        android:label="@string/spes_parts_title"
+        android:defaultToDeviceProtectedStorage="true"
+        android:directBootAware="true"
+        android:theme="@style/Theme.SubSettingsBase"
+        android:exported="true">
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            tools:replace="android:authorities"/>
+
+        <!-- SpesParts -->
+        <activity
+            android:name=".SpesPartsActivity"
+            android:label="@string/spes_parts_title"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
+            </intent-filter>
+            <meta-data
+                android:name="com.android.settings.icon"
+                android:resource="@drawable/ic_spes_parts" />
+            <meta-data
+                android:name="com.android.settings.category"
+                android:value="com.android.settings.category.ia.homepage" />
+            <meta-data android:name="com.android.settings.summary"
+                android:resource="@string/spes_parts_summary" />
+        </activity>
+
+        <activity
+            android:name=".SpesParts"
+            android:exported="false" />
+
+        <!-- SpesParts boot completed receiver -->
+        <receiver
+            android:name=".Startup"
+            android:exported="false">  
+            <intent-filter>
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Jitter test activity -->
+        <activity
+            android:name=".uibench.JitterTestActivity"
+            android:label="@string/jitter_test_title"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Power efficient workqueue tile service -->
+        <service
+            android:name=".services.PEWQTileSerice"
+            android:label="@string/power_efficient_workqueue_title"
+            android:icon="@drawable/ic_power_efficient_workqueue_tile"
+            android:exported="true"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <!-- Search Provider -->
+        <provider
+            android:name=".ConfigPanelSearchIndexablesProvider"
+            android:authorities="org.yaap.spesparts"
+            android:multiprocess="false"
+            android:grantUriPermissions="true"
+            android:permission="android.permission.READ_SEARCH_INDEXABLES"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.content.action.SEARCH_INDEXABLES_PROVIDER" />
+            </intent-filter>
+        </provider>
+    </application>
+</manifest>
