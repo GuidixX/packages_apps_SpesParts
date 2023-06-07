@@ -12,6 +12,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 
+import org.yaap.spesparts.saturation.Saturation;
+
 public class Startup extends BroadcastReceiver {
 
     private static final String TAG = Startup.class.getSimpleName();
@@ -19,7 +21,9 @@ public class Startup extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         final String action = intent.getAction();
+
             // SpesParts
             SpesParts.restorePowerEfficientWorkqueueSetting(context);
+            Saturation.restoreSaturationSetting(context);
     }
 }

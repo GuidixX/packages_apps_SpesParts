@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2024 Yet Another AOSP Project
+    Copyright (C) 2024 GuidixX
+    SPDX-License-Identifier: Apache-2.0
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:settings="http://schemas.android.com/apk/res/org.yaap.spesparts">
+
+    <PreferenceCategory
+        android:key="adjustable_values">
+
+        <org.yaap.spesparts.preferences.CustomSeekBarPreference
+            android:key="saturation"
+            android:persistent="true"
+            android:max="200"
+            android:min="0"
+            android:defaultValue="100" />
+
+        <Preference
+            android:key="saturation_info"
+            android:icon="@drawable/ic_info_outline"
+            android:summary="@string/saturation_info"
+            android:selectable="false"
+            android:persistent="false" />
+    </PreferenceCategory>
+</PreferenceScreen>
