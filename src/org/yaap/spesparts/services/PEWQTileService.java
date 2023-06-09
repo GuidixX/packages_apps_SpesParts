@@ -12,12 +12,15 @@ import androidx.preference.PreferenceManager;
 
 import org.yaap.spesparts.misc.Constants;
 import org.yaap.spesparts.utils.Utils;
+import org.yaap.spesparts.R;
 
 public class PEWQTileSerice extends TileService {
 
     private void updateTile(boolean enabled) {
         final Tile tile = getQsTile();
         tile.setState(enabled ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE);
+        String subtitle = enabled ? getString(R.string.tile_on) : getString(R.string.tile_off);
+        tile.setSubtitle(subtitle);
         tile.updateTile();
     }
 
