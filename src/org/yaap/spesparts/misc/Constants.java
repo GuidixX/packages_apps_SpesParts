@@ -7,6 +7,9 @@ package org.yaap.spesparts.misc;
 
 public class Constants {
 
+    // Device intro preference
+    public static final String KEY_DEVICE_INTRO = "device_intro";
+
     // Power efficient workqueue switch
     public static final String KEY_POWER_EFFICIENT_WORKQUEUE = "power_efficient_workqueue";
     public static final String NODE_POWER_EFFICIENT_WORKQUEUE = "/sys/module/workqueue/parameters/power_efficient";

@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package org.yaap.speparts;
+package org.yaap.spesparts;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,20 +15,28 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 import androidx.preference.PreferenceFragment;
 import androidx.preference.PreferenceManager;
 import androidx.preference.Preference;
 import androidx.preference.SwitchPreference;
 
+import com.android.settingslib.widget.TopIntroPreference;
+
 import org.yaap.spesparts.misc.Constants;
+import org.yaap.spesparts.preferences.CustomSeekBarPreference;
 import org.yaap.spesparts.R;
 import org.yaap.spesparts.utils.Utils;
 
 public class SpesParts extends PreferenceFragment
         implements Preference.OnPreferenceChangeListener {
     private static final String TAG = SpesParts.class.getSimpleName();
+
+    // Device intro preference
+    private TopIntroPreference mIntroPreference;
 
     // Power efficient workqueue switch
     private SwitchPreference mPowerEfficientWorkqueueModeSwitch;
@@ -45,6 +53,13 @@ public class SpesParts extends PreferenceFragment
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         Context context = getContext();
 
+        // Device intro preference
+        String deviceManufacturer = Build.MANUFACTURER;
+        String deviceModel = Build.MODEL;
+        String deviceName = deviceManufacturer + " " + deviceModel;
+        mIntroPreference = findPreference(Constants.KEY_DEVICE_INTRO);
+        mIntroPreference.setTitle(deviceName);
+
         // Power efficient workqueue switch
         mPowerEfficientWorkqueueModeSwitch = (SwitchPreference) findPreference(Constants.KEY_POWER_EFFICIENT_WORKQUEUE);
         if (Utils.isFileWritable(Constants.NODE_POWER_EFFICIENT_WORKQUEUE)) {
@@ -52,14 +67,15 @@ public class SpesParts extends PreferenceFragment
             mPowerEfficientWorkqueueModeSwitch.setChecked(sharedPrefs.getBoolean(Constants.KEY_POWER_EFFICIENT_WORKQUEUE, false));
             mPowerEfficientWorkqueueModeSwitch.setOnPreferenceChangeListener(this);
         } else {
+            mPowerEfficientWorkqueueModeSwitch.setSummary(getString(R.string.kernel_node_access_error));
             mPowerEfficientWorkqueueModeSwitch.setEnabled(false);
         }
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        // Power efficient workqueue switch
-        if (preference == mPowerEfficientWorkqueueModeSwitch) {
+          // Power efficient workqueue switch
+        } else if (preference == mPowerEfficientWorkqueueModeSwitch) {
             boolean enabled = (Boolean) newValue;
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putBoolean(Constants.KEY_POWER_EFFICIENT_WORKQUEUE, enabled).commit();

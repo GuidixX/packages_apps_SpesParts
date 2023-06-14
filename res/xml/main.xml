@@ -7,8 +7,7 @@
 	xmlns:settings="http://schemas.android.com/apk/res/org.yaap.spesparts">
 
     <com.android.settingslib.widget.TopIntroPreference
-        android:key="spes_parts_intro"
-        android:title="@string/spes_parts_summary"/>
+        android:key="device_intro"/>
 
     <!-- Start of CPU category -->
     <PreferenceCategory  
