@@ -81,6 +81,30 @@
             </intent-filter>
         </activity>
 
+        <!-- SpesParts tile service -->
+        <service
+            android:name=".services.SpesPartsTileService"
+            android:label="@string/spes_parts_title"
+            android:icon="@drawable/ic_spes_parts_tile"
+            android:exported="true"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <!-- Saturation tile service -->
+        <service  
+            android:name=".services.SaturationTileService"
+            android:label="@string/saturation_title"
+            android:icon="@drawable/ic_saturation_tile"
+            android:exported="true"  
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
         <!-- Power efficient workqueue tile service -->
         <service
             android:name=".services.PEWQTileSerice"
