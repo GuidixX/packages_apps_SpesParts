@@ -7,21 +7,15 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:settings="http://schemas.android.com/apk/res/org.yaap.spesparts">
 
-    <PreferenceCategory
-        android:key="adjustable_values">
+    <org.yaap.spesparts.preferences.CustomSeekBarPreference
+        android:key="saturation"
+        android:persistent="true"
+        android:max="200"
+        android:min="0"
+        android:defaultValue="100" />
 
-        <org.yaap.spesparts.preferences.CustomSeekBarPreference
-            android:key="saturation"
-            android:persistent="true"
-            android:max="200"
-            android:min="0"
-            android:defaultValue="100" />
-
-        <Preference
-            android:key="saturation_info"
-            android:icon="@drawable/ic_info_outline"
-            android:summary="@string/saturation_info"
-            android:selectable="false"
-            android:persistent="false" />
-    </PreferenceCategory>
+    <com.android.settingslib.widget.FooterPreference
+        android:key="saturation_footer"  
+        android:title="@string/saturation_footer_summary"
+        android:selectable="false" />
 </PreferenceScreen>
