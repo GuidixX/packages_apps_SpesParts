@@ -69,6 +69,17 @@
             </intent-filter>
         </activity>
 
+        <!-- Tile Handler activity -->
+        <activity
+            android:name=".TileHandlerActivity"
+            android:exported="true"
+            android:noHistory="true"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
+            </intent-filter>
+        </activity>
+
         <!-- Saturation activity -->
         <activity
             android:name=".saturation.SaturationActivity"
