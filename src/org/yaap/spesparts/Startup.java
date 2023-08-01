@@ -7,12 +7,11 @@
 package org.yaap.spesparts;
 
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 
 import org.yaap.spesparts.saturation.Saturation;
+import org.yaap.spesparts.utils.ComponentUtils;
 
 public class Startup extends BroadcastReceiver {
 
