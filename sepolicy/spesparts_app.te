@@ -19,6 +19,7 @@ allow spesparts_app {
   permission_checker_service
   sensorservice_service
   surfaceflinger_service
+  statusbar_service
   thermal_service
   trust_service
   voiceinteraction_service
