@@ -74,15 +74,16 @@ public class SpesParts extends PreferenceFragment
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-          // Power efficient workqueue switch
-        } else if (preference == mPowerEfficientWorkqueueModeSwitch) {
+        if (preference == mPowerEfficientWorkqueueModeSwitch) {
             boolean enabled = (Boolean) newValue;
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putBoolean(Constants.KEY_POWER_EFFICIENT_WORKQUEUE, enabled).commit();
             Utils.writeValue(Constants.NODE_POWER_EFFICIENT_WORKQUEUE, enabled ? "1" : "0");
             return true;
+        }
         return false;
     }
+
 
     // Power efficient workqueue switch
     public static void restorePowerEfficientWorkqueueSetting(Context context) {
